@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+<script type="text/javascript" language="javascript" src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js"></script>
+</head>
+<title>无标题文档</title>
+<script>
+$(function() {
+$("[name=all]").click(function(){
+	var letall = $(this).attr("checked");
+	if(letall){
+		$(this).attr('checked','true');
+		$(this).parent().find("[name=set]").eq(0).attr('checked','true');
+		}else{
+		$(this).parent().find("input").removeAttr("checked");
+			}
+	});
+$("[name=set]").click(function(){	
+	$(this).parent().find("[name=all]").attr('checked','true');
+	});	
+	
+$("[name=let]").click(function(){	
+	var letall = $(this).attr("checked");
+		numforlet = $(this).parent().find("[name=let]");
+		numforset = $(this).parent().find("[name=set]");
+		letnum = 0;
+		setnum = 0;
+		for(i=0;i<numforlet.length;i++){
+			if(numforlet.eq(i).attr("checked")){
+				letnum = letnum +1
+				}
+			}
+		for(i=0;i<numforset.length;i++){
+			if(numforset.eq(i).attr("checked")){
+				setnum = setnum +1
+				}
+			}
+	if (letnum == 0){
+		$(this).parent().find("input").removeAttr("checked");
+		}
+	if (letnum == 1){
+		if(setnum == 0){
+			$(this).parent().find("[name=set]").eq(0).attr('checked','true');
+			}
+			$(this).parent().find("[name=all]").attr('checked','true');
+			}
+	});		
+	});
+</script>
+<body>
+<p><input name="all" type="checkbox" value="" checked="checked"><input name="set" type="radio" value="" checked="checked"><input name="set" type="radio" value=""><input name="let" type="checkbox" value=""><input name="let" type="checkbox" value=""><input name="let" type="checkbox" value="" checked="checked"></p>
+<p><input name="all" type="checkbox" value="" checked="checked"><input name="set" type="radio" value="" checked="checked"><input name="set" type="radio" value=""><input name="let" type="checkbox" value=""><input name="let" type="checkbox" value=""><input name="let" type="checkbox" value="" checked="checked"></p>
+</body>
+</html>
